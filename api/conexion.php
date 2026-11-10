@@ -26,9 +26,13 @@ try {
 
     $conexion->exec($sql);
 
+
 } catch (PDOException $e) {
+    error_log("ERROR MYSQL CAROLINA: " . $e->getMessage());
+
     http_response_code(500);
     die(json_encode([
         "error" => "No fue posible conectar con la base de datos."
     ]));
 }
+
