@@ -1,7 +1,4 @@
-
 <?php
-header("Content-Type: application/json; charset=utf-8");
-
 $host = getenv("DB_HOST");
 $port = getenv("DB_PORT");
 $db   = getenv("DB_NAME");
@@ -35,4 +32,3 @@ try {
         "error" => "No fue posible conectar con la base de datos."
     ]));
 }
-?>
