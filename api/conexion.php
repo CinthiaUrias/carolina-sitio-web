@@ -5,6 +5,14 @@ $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASSWORD");
 
+error_log("MYSQL DEBUG: " . json_encode([
+    "host" => $host ?: "VACIO",
+    "port" => $port ?: "VACIO",
+    "database" => $db ?: "VACIO",
+    "user" => $user ?: "VACIO",
+    "password_configured" => !empty($pass)
+]));
+
 try {
     $conexion = new PDO(
         "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4",
