@@ -5,255 +5,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CAROLINA | Regalos y decoración</title>
+    <title>CAROLINA | Administración de productos</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="style.css">
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #30252b;
-            background:
-                linear-gradient(rgba(255, 224, 207, 0.72),
-                                rgba(255, 224, 207, 0.72)),
-                url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=80");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+    <!-- Biblioteca SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        .contenedor {
-            width: 92%;
-            max-width: 1250px;
-            margin: 25px auto;
-            background: rgba(255, 255, 255, 0.90);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        #header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px 30px;
-            background: #ffd3bc;
-        }
-
-        .logo {
-            width: 95px;
-            height: 95px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid white;
-        }
-
-        .marca h1 {
-            margin: 0;
-            font-size: 38px;
-            letter-spacing: 4px;
-        }
-
-        .marca p {
-            margin-bottom: 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            padding: 18px;
-            background: #fff0e7;
-        }
-
-        nav a {
-            color: #30252b;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #d94f91;
-        }
-
-        main {
-            padding: 35px 25px;
-            text-align: center;
-        }
-
-        .categorias {
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 16px;
-            margin: 30px 0;
-        }
-
-        .categoria {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #ffe3ef;
-        }
-
-        .categoria img {
-            display: block;
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .categoria h3 {
-            margin: 0;
-            padding: 14px 5px;
-            background: #ffe3ef;
-        }
-
-        .video {
-            margin: 35px auto 10px;
-            padding: 25px;
-            max-width: 650px;
-            background: #fff0e7;
-            border-radius: 12px;
-        }
-
-        .boton {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 13px 22px;
-            color: white;
-            background: #e65a9b;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-        }
-
-        .boton:hover {
-            background: #c83c7d;
-        }
-
-        footer {
-            padding: 25px;
-            text-align: center;
-            background: #ffd3bc;
-            line-height: 1.8;
-            overflow-wrap: anywhere;
-        }
-
-        footer p {
-            margin: 5px;
-        }
-
-        @media (max-width: 850px) {
-            .categorias {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 500px) {
-            #header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .categorias {
-                grid-template-columns: 1fr;
-            }
-
-            nav {
-                gap: 15px;
-            }
-        }
-    </style>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
+
     <div class="contenedor">
 
-        <div id="header">
-            <img
-                class="logo"
-                src="https://placehold.co/200x200/ed91bd/ffffff?text=CAROLINA"
-                alt="Logo de CAROLINA">
-
+        <header class="encabezado">
             <div class="marca">
-                <h1>CAROLINA</h1>
-                <p>Artículos de decoración y regalos para chicas adolescentes.</p>
+                <div class="logo">C</div>
+                <div>
+                    <h1>CAROLINA</h1>
+                    <p>Regalos, decoración y creatividad</p>
+                </div>
             </div>
-        </div>
 
-        <nav>
-            <a href="#categorias">Categorías</a>
-            <a href="#video">Ideas DIY</a>
-            <a href="#footer">Contacto</a>
-        </nav>
+            <span class="etiqueta">Sistema de administración</span>
+        </header>
 
         <main>
-            <h2>Encuentra algo especial</h2>
-            <p>
-                Regalos, papelería, decoración y accesorios
-                para expresar tu estilo y creatividad.
-            </p>
 
-            <section id="categorias" class="categorias">
+            <section class="bienvenida">
+                <div>
+                    <h2>Administración de productos</h2>
+                    <p>Organiza y administra los productos de tu tienda.</p>
+                </div>
+                <span class="fecha" id="fechaActual"></span>
+            </section>
 
-                <article class="categoria">
-                    <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=500&q=80"
-                         alt="Regalos">
-                    <h3>Regalos</h3>
+            <section class="resumen">
+
+                <article class="tarjeta-resumen">
+                    <span>Productos registrados</span>
+                    <strong id="totalProductos">0</strong>
                 </article>
 
-                <article class="categoria">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=500&q=80"
-                         alt="Papelería">
-                    <h3>Papelería</h3>
+                <article class="tarjeta-resumen">
+                    <span>Valor del inventario</span>
+                    <strong id="valorInventario">$0.00</strong>
                 </article>
 
-                <article class="categoria">
-                    <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=500&q=80"
-                         alt="Manualidades DIY">
-                    <h3>DIY</h3>
-                </article>
-
-                <article class="categoria">
-                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=500&q=80"
-                         alt="Decoración floral">
-                    <h3>Decoración</h3>
-                </article>
-
-                <article class="categoria">
-                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=500&q=80"
-                         alt="Moda">
-                    <h3>Moda</h3>
+                <article class="tarjeta-resumen">
+                    <span>Categorías disponibles</span>
+                    <strong id="totalCategorias">5</strong>
                 </article>
 
             </section>
 
-            <section id="video" class="video">
-                <h2>Inspírate y crea</h2>
-                <p>
-                    Descubre ideas de manualidades fáciles
-                    para crear regalos originales.
-                </p>
+            <section class="panel formulario-panel">
 
-                <a class="boton"
-                   href="https://www.youtube.com/watch?v=M575nf_TT9w"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Ver video de manualidades
-                </a>
+                <div class="titulo-panel">
+                    <div>
+                        <h2 id="tituloFormulario">Agregar producto</h2>
+                        <p>Registra los artículos de CAROLINA.</p>
+                    </div>
+                </div>
+
+                <form id="formProducto">
+
+                    <input type="hidden" id="productoId">
+
+                    <div class="campos">
+
+                        <div class="campo">
+                            <label for="nombre">Nombre del producto</label>
+                            <input
+                                type="text"
+                                id="nombre"
+                                placeholder="Ej. Libreta decorada"
+                                maxlength="150"
+                                required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="categoria">Categoría</label>
+                            <select id="categoria" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="Regalos">Regalos</option>
+                                <option value="Papelería">Papelería</option>
+                                <option value="DIY">DIY</option>
+                                <option value="Decoración">Decoración</option>
+                                <option value="Moda">Moda</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="precio">Precio ($)</label>
+                            <input
+                                type="number"
+                                id="precio"
+                                placeholder="0.00"
+                                min="0.01"
+                                step="0.01"
+                                required>
+                        </div>
+
+                        <div class="campo campo-completo">
+                            <label for="descripcion">Descripción</label>
+                            <textarea
+                                id="descripcion"
+                                rows="3"
+                                placeholder="Describe brevemente el producto..."></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="acciones-formulario">
+                        <button type="submit" class="boton boton-principal" id="btnGuardar">
+                            Guardar producto
+                        </button>
+
+                        <button type="button" class="boton boton-secundario"
+                                id="btnCancelar" hidden>
+                            Cancelar edición
+                        </button>
+                    </div>
+
+                </form>
+
             </section>
+
+            <section class="panel inventario-panel">
+
+                <div class="titulo-panel">
+                    <div>
+                        <h2>Inventario de productos</h2>
+                        <p>Consulta y administra los artículos registrados.</p>
+                    </div>
+                </div>
+
+                <div class="filtros">
+
+                    <input
+                        type="search"
+                        id="busqueda"
+                        placeholder="Buscar producto por nombre...">
+
+                    <select id="filtroCategoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="Regalos">Regalos</option>
+                        <option value="Papelería">Papelería</option>
+                        <option value="DIY">DIY</option>
+                        <option value="Decoración">Decoración</option>
+                        <option value="Moda">Moda</option>
+                    </select>
+
+                    <button type="button" id="btnActualizar" class="boton boton-secundario">
+                        Actualizar
+                    </button>
+
+                </div>
+
+                <div id="mensajeEstado" class="mensaje-estado" aria-live="polite">
+                    Cargando productos...
+                </div>
+
+                <div class="tabla-contenedor">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaProductos">
+                            <tr>
+                                <td colspan="6">Cargando información...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
         </main>
 
-        <footer id="footer">
-            <p><strong>Curso:</strong> 3.2. Sitio Web sencillo</p>
-            <p><strong>Nombre:</strong> Cinthia Carolina Urias Fuerte</p>
-            <p><strong>Código:</strong> 225385292</p>
-            <p><strong>Correo:</strong> cinthia.urias@gmail.com</p>
+        <footer>
+            <strong>CAROLINA</strong>
+            <p>Sistema de administración de productos</p>
+            <p>Desarrollado por Cinthia Carolina Urias Fuerte</p>
         </footer>
 
     </div>
+
 </body>
 </html>
